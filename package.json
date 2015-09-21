@@ -1,0 +1,41 @@
+{
+  "name": "jazzon",
+  "version": "0.1.0",
+  "description": "Add some jazz to your JSON files",
+  "main": "index.js",
+  "engines": {
+    "node": "^4.0.0"
+  },
+  "scripts": {
+    "test": "tape test/**/*.js",
+    "posttest": "npm run lint",
+    "lint": "eslint ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tornqvist/jazzon.git"
+  },
+  "keywords": [
+    "json",
+    "extend",
+    "filter",
+    "modify"
+  ],
+  "author": "Carl Törnqvist <calle.tornqvist@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tornqvist/jazzon/issues"
+  },
+  "homepage": "https://github.com/tornqvist/jazzon#readme",
+  "devDependencies": {
+    "eslint": "^1.4.3",
+    "tape": "^4.2.0"
+  },
+  "dependencies": {
+    "co": "^4.6.0",
+    "lodash.clonedeep": "^3.0.2",
+    "lodash.isfunction": "^3.0.6",
+    "lodash.isplainobject": "^3.2.0",
+    "lodash.isstring": "^3.0.1"
+  }
+}

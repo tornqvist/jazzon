@@ -8,3 +8,4 @@
 - [ ] Add wrapper for non-Promises returned from plugins
 - [ ] Add test for plugins (generator/non-generator)
 - [ ] Better error handling
+- [ ] Add CLI

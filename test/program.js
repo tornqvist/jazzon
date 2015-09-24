@@ -32,3 +32,26 @@ test('program is recursive', assert => {
       assert.end();
     }, assert.end);
 });
+
+test('helper names may be dot notaded', assert => {
+  let instance = jazzon.create();
+  let json = { test: '${ much.helper | other.helper.very.nested(with, args) }' };
+
+  instance
+    .use(function (value, name, args) {
+      switch (name) {
+      case 'much.helper':
+        assert.pass('dot notaded helper identified');
+        break;
+      case 'other.helper.very.nested':
+        assert.pass('deep nested helper identified');
+        assert.deepLooseEqual(args, ['with', 'args'], 'nested helper does not affect args');
+        break;
+      default:
+        assert.fail('should not fall through');
+        break;
+      }
+    })
+    .compile(json)
+    .then(() => assert.end(), assert.end);
+});

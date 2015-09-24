@@ -1,6 +1,6 @@
 {
   "name": "jazzon",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Add some jazz to your JSON files",
   "main": "index.js",
   "engines": {

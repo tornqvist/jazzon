@@ -9,9 +9,9 @@ test('plugin context is current tree level', assert => {
   let instance = jazzon.create();
   let json = {
     one: {
-      test: '${ top }',
+      test: '@{ top }',
       two: {
-        test: '${ bottom }',
+        test: '@{ bottom }',
         bar: 'baz'
       }
     }
@@ -39,7 +39,7 @@ test('plugin context is current tree level', assert => {
 
 test('plugin arguments', assert => {
   let instance = jazzon.create();
-  let json = { foo: '${ first(foo, bar) | second }' };
+  let json = { foo: '@{ first(foo, bar) | second }' };
 
   instance
     .use(function (value, helper, args) {

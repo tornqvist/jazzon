@@ -8,7 +8,7 @@ let jazzon = require(resolve(__dirname, '..', pkg.main));
 test('program is recursive', assert => {
   let instance = jazzon.create();
   let json = {
-    foo: '${ foo }'
+    foo: '@{ foo }'
   };
   let expected = {
     foo: {
@@ -20,7 +20,7 @@ test('program is recursive', assert => {
     .use(function (value, helper) {
       return new Promise((resolve) => {
         switch (helper) {
-        case 'foo': resolve({ bar: '${ bar }' }); break;
+        case 'foo': resolve({ bar: '@{ bar }' }); break;
         case 'bar': resolve('foobar'); break;
         default: assert.fail('should not fall through'); break;
         }
@@ -35,7 +35,7 @@ test('program is recursive', assert => {
 
 test('helper names may be dot notaded', assert => {
   let instance = jazzon.create();
-  let json = { test: '${ much.helper | other.helper.very.nested(with, args) }' };
+  let json = { test: '@{ much.helper | other.helper.very.nested(with, args) }' };
 
   instance
     .use(function (value, name, args) {

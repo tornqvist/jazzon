@@ -7,7 +7,7 @@ let jazzon = require(resolve(__dirname, '..', pkg.main));
 
 test('helpers are chained', assert => {
   let instance = jazzon.create();
-  let json = { foo: '${ foo | bar }' };
+  let json = { foo: '@{ foo | bar }' };
 
   instance
     .use(function (value, helper) {
@@ -29,7 +29,7 @@ test('helpers are chained', assert => {
 test('helper basic return values', assert => {
   let instance = jazzon.create();
   let fixtures = ['string', 'promise', 'function', 'generator', 'generatorFunction'];
-  let json = { test: '${' + fixtures.join('|') + '}' };
+  let json = { test: `@{ ${ fixtures.join('|') } }` };
 
   instance
     .use(function (value, helper) {
@@ -63,7 +63,7 @@ test('helper basic return values', assert => {
 
 test('helper can return an object', assert => {
   let instance = jazzon.create();
-  let json = { test: '${ obj }' };
+  let json = { test: '@{ obj }' };
 
   instance
     .use(function (value, helper) {
@@ -90,7 +90,7 @@ test('helper can return an object', assert => {
 
 test('helper can return an array', assert => {
   let instance = jazzon.create();
-  let json = { test: '${ arr }' };
+  let json = { test: '@{ arr }' };
 
   instance
     .use(function (value, helper) {

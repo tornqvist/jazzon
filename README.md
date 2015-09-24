@@ -18,7 +18,7 @@ To illustrate a most basic scenario, this is how one might use jazzon together w
 const jazzon = require('jazzon');
 const uuid = require('jazzon-uuid');
 
-let data = { id: "${ uuid }" };
+let data = { id: "@{ uuid }" };
 
 jazzon.use(uuid());
 
@@ -35,10 +35,10 @@ Helpers can also be chained using the pipe (`|`) symbol. Each chained helper get
 // user.json
 
 {
-  "id": "${ uuid }",
-  "name": "${ name.findName }",
-  "email": "${ internet.email }",
-  "username": "${ internet.userName }"
+  "id": "@{ uuid }",
+  "name": "@{ name.findName }",
+  "email": "@{ internet.email }",
+  "username": "@{ internet.userName }"
 }
 ```
 
@@ -47,7 +47,7 @@ Helpers can also be chained using the pipe (`|`) symbol. Each chained helper get
 
 {
   "total": 3,
-  "users": "${ import(user.json) | pick(id, username) | repeat(3) }"
+  "users": "@{ import(user.json) | pick(id, username) | repeat(3) }"
 }
 ```
 
@@ -71,11 +71,11 @@ Running `users.json` through jazzon would produce something like this:
 
 ## Syntax
 
-The syntax of helpers are very similar to [JavaScript template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings) to clearly illustrate their purpose.
+The syntax of helpers are very similar to [JavaScript template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings) to clearly illustrate their purpose. But do not confuse them as the pipe separator is not a valid JavaScript operator.
 
-The string must start with `${` and end with `}`. Each helper is separated with a `|` symbol. Encountering an invalid template-ish string will throw an error.
+The string must start with `@{` and end with `}`. Each helper is separated with a `|` symbol. Encountering an invalid template-ish string will throw an error.
 
-Use [this regexr](http://regexr.com/3brq4) to experiment with the template strings.
+Use [this regexr](http://regexr.com/3brqd) to experiment with the template strings.
 
 ## Plugins
 
@@ -92,7 +92,7 @@ module.exports = function (otions) {
     case 'name':
       return args[0] || options.default;
     case 'wrap':
-      return `Hello ${ value }!`;
+      return `Hello @{ value }!`;
     default:
       return value;
     }
@@ -108,8 +108,8 @@ jazzon
     default: 'world'
   }))
   .compile({
-    "first": "${ name | wrap }",
-    "second": "${ name(Joe) | wrap }"
+    "first": "@{ name | wrap }",
+    "second": "@{ name(Joe) | wrap }"
   })
   .then(result => console.log(result)); // => {"first": "Hello world!", "second": "Hello Joe!"}
 ```

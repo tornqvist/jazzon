@@ -33,7 +33,9 @@
   },
   "dependencies": {
     "co": "^4.6.0",
+    "is-generator": "^1.0.2",
     "lodash.clonedeep": "^3.0.2",
+    "lodash.iserror": "^3.0.1",
     "lodash.isfunction": "^3.0.6",
     "lodash.isplainobject": "^3.2.0",
     "lodash.isstring": "^3.0.1"

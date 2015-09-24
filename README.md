@@ -138,7 +138,7 @@ To add your own plugin, add it to the list and make a pull request.
 ## TODO
 
 - [x] Add documentation
-- [ ] Add wrapper for non-Promises returned from plugins
+- [x] Add wrapper for non-Promises returned from plugins
 - [ ] Add test for plugins (generator/non-generator)
 - [ ] Better error handling
 - [ ] Add CLI

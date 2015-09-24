@@ -10,12 +10,12 @@ test('helpers are chained', assert => {
   let json = { foo: '${ foo | bar }' };
 
   instance
-    .use(function (value, name) {
+    .use(function (value, helper) {
       return new Promise((resolve) => {
-        switch (name) {
+        switch (helper) {
         case 'foo': resolve('foo'); break;
         case 'bar': resolve(value + 'bar'); break;
-        default: assert.fail('this should not happen'); break;
+        default: assert.fail('should not fall through'); break;
         }
       });
     })

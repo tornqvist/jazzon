@@ -17,12 +17,12 @@ test('program is recursive', assert => {
   };
 
   instance
-    .use(function (value, name) {
+    .use(function (value, helper) {
       return new Promise((resolve) => {
-        switch (name) {
+        switch (helper) {
         case 'foo': resolve({ bar: '${ bar }' }); break;
         case 'bar': resolve('foobar'); break;
-        default: assert.fail('this should not happen'); break;
+        default: assert.fail('should not fall through'); break;
         }
       });
     })

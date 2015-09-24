@@ -65,33 +65,3 @@ test('jazzon.compile() does not mutate', assert => {
       assert.end();
     }, assert.end);
 });
-
-test('plugin manipulates the output', assert => {
-  let instance = jazzon.create();
-  let json = { greeting: '${ phrase(Hello, world) | punctuation }' };
-
-  instance
-    .use(function (value, name, args) {
-      switch (name) {
-
-      case 'phrase':
-        assert.looseEqual(value, null, 'no value is supplied to first helper');
-        assert.equal(name, 'phrase', 'plugin was called with name');
-        assert.deepEqual(args, ['Hello', 'world'], 'plugin was called with args');
-        assert.deepLooseEqual(this, json, 'calling context is bound to current tree');
-        return Promise.resolve(args.join(' '));
-
-      case 'punctuation':
-        assert.equal(value, 'Hello world', 'value was forwarded from first helper');
-        return Promise.resolve(value += '!');
-
-      default:
-        return Promise.resolve(value);
-      }
-    })
-    .compile(json)
-    .then((result) => {
-      assert.equal(result.greeting, 'Hello world!', 'plugin manipulated output');
-      assert.end();
-    }, assert.end);
-});

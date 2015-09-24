@@ -18,7 +18,7 @@ test('plugin context is current tree level', assert => {
   };
 
   instance
-    .use(function (value, helper) {
+    .use(function (state, helper) {
       switch (helper) {
       case 'top':
         assert.deepLooseEqual(this, json.one, 'context is level one');
@@ -31,7 +31,7 @@ test('plugin context is current tree level', assert => {
         break;
       }
 
-      return Promise.resolve(value);
+      return state;
     })
     .compile(json)
     .then(() => assert.end(), assert.end);
@@ -42,18 +42,17 @@ test('plugin arguments', assert => {
   let json = { foo: '@{ first(foo, bar) | second }' };
 
   instance
-    .use(function (value, helper, args) {
+    .use(function (state, helper, args) {
       switch (helper) {
       case 'first':
-        assert.looseEqual(value, null, 'first helpers has no value');
+        assert.looseEqual(state, null, 'first helpers has no state');
         assert.deepEqual(args, ['foo', 'bar'], 'gets helper arguments');
         return Promise.resolve('foo');
       case 'second':
-        assert.equal(value, 'foo', 'value is output from last helper');
-        return Promise.resolve(value);
+        assert.equal(state, 'foo', 'state is output from last helper');
+        return Promise.resolve(state);
       default:
         assert.fail('should not fall through');
-        return Promise.resolve(value);
       }
     })
     .compile(json)

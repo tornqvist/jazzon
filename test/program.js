@@ -17,7 +17,7 @@ test('program is recursive', assert => {
   };
 
   instance
-    .use(function (value, helper) {
+    .use(function (state, helper) {
       return new Promise((resolve) => {
         switch (helper) {
         case 'foo': resolve({ bar: '@{ bar }' }); break;
@@ -38,7 +38,7 @@ test('helper names may be dot notaded', assert => {
   let json = { test: '@{ much.helper | other.helper.very.nested(with, args) }' };
 
   instance
-    .use(function (value, name, args) {
+    .use(function (state, name, args) {
       switch (name) {
       case 'much.helper':
         assert.pass('dot notaded helper identified');

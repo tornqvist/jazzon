@@ -10,7 +10,7 @@ $ npm install --save jazzon
 
 ## Usage
 
-In and of it self jazzon does nothing, really. It's sole purpose is to allow for registered plugins to act on helpers identified in data passed through jazzon.
+In and of it self jazzon does nothing, *really*. It's sole purpose is to call registered plugins with the current state and identified helpers. Helpers can be chained passing the current state from one to the next.
 
 To illustrate a most basic scenario, this is how one might use jazzon together with [jazzon-uuid](https://github.com/tornqvist/jazzon-uuid)
 
@@ -29,7 +29,7 @@ jazzon
 
 In this scenario, jazzon encounters the helper `uuid` and calls each registered plugin (in this case `jazzon-uuid`) on it.
 
-Helpers can also be chained using the pipe (`|`) symbol. Each chained helper gets the output of the previous helper to operate on. To illustrate a more complex scenario, take these two models:
+Helpers can also be chained using the pipe (`|`) symbol. Each chained helper gets the output (state) of the previous helper to operate on. To illustrate a more complex scenario, take these two models:
 
 ```javascript
 // user.json
@@ -79,22 +79,22 @@ Use [this regexr](http://regexr.com/3brqd) to experiment with the template strin
 
 ## Plugins
 
-Plugins should export a function that get's called once for every helper encountered by jazzon. The convention is to export a factory function that returns the plugin function.
+Plugins should export a function that get's called once for every helper encountered by jazzon. The convention is to export a factory function that returns the plugin.
 
-A plugin really is just a reducer that jazzon uses to process all the helpers. Therefore a plugin should *always* return a value, even if it does not manipulate the value. A switch statement does the job as so:
+A plugin really is just a reducer that jazzon uses to process all the helpers. Therefore a plugin should *always* return a state, even if it does not manipulate the state. A switch statement does the job as so:
 
 ```javascript
 // myplugin.js
 
 module.exports = function (otions) {
-  return function (value, helper, args) {
+  return function (state, helper, args) {
     switch (helper) {
     case 'name':
       return args[0] || options.default;
     case 'wrap':
-      return `Hello @{ value }!`;
+      return `Hello ${ state }!`;
     default:
-      return value;
+      return state;
     }
   }
 };

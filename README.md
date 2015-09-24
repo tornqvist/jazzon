@@ -114,7 +114,7 @@ jazzon
   .then(result => console.log(result)); // => {"first": "Hello world!", "second": "Hello Joe!"}
 ```
 
-Jazzon also supports async plugins. Under the hood, jazzon is using [co](https://github.com/tj/co) so anything that co can handle jazzon can handle. As so, a plugin may expose a Promise, generator, generator function, function, Object or Array. See some of the plugins for examples of how this is achieved.
+Jazzon also supports async plugins. Under the hood, jazzon is using [co](https://github.com/tj/co) so anything that co can handle jazzon can handle. As so, a plugin may return a Promise, generator, generator function, function, object or array. Due to the awesome nature of co, objects and arrays may contain nestled objects/arrays containing Promises or any of the other supported types. See some of the plugins for examples of how this is achieved.
 
 ### Availible plugins
 

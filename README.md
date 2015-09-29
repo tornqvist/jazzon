@@ -75,7 +75,7 @@ The syntax of helpers are very similar to [JavaScript template strings](https://
 
 The string must start with `@{` and end with `}`. Each helper is separated with a `|` symbol. Encountering an invalid template-ish string will throw an error.
 
-Use [this regexr](http://regexr.com/3brqd) to experiment with the template strings.
+Use [this regexr](http://regexr.com/3bsnl) to experiment with the template strings.
 
 ## Plugins
 

@@ -1,6 +1,6 @@
 'use strict';
 
-let compile = require('./lib/compile');
+const compile = require('./lib/compile');
 
 /**
  * Factory for creating an instance
@@ -11,7 +11,7 @@ let compile = require('./lib/compile');
 function create(plugins) {
   plugins = Array.isArray(plugins) ? plugins : [];
 
-  let jazzon = {
+  const jazzon = {
 
     /**
      * Allow access to a shallow copy of the plugins

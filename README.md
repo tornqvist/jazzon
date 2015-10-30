@@ -114,7 +114,7 @@ jazzon
   .then(result => console.log(result)); // => {"first": "Hello world!", "second": "Hello Joe!"}
 ```
 
-Jazzon also supports async plugins. Under the hood, jazzon is using [co](https://github.com/tj/co) so anything that co can handle jazzon can handle. As so, other than just plain strings, a plugin may return a Promise, generator, generator function, function, object or array. Due to the awesome nature of co, objects and arrays may contain nestled objects/arrays containing Promises or any of the other supported types. See some of the plugins for examples of how this is achieved.
+Jazzon also supports async plugins. Under the hood, jazzon is using [co](https://github.com/tj/co) so anything that co can handle, jazzon can handle. As so, other than just plain strings, a plugin may return a Promise, generator, generator function, function, object or array. Due to the awesome nature of co, objects and arrays may contain nestled objects/arrays containing Promises or any of the other supported types. See some of the plugins for examples of how this is achieved.
 
 ### Availible plugins
 
@@ -123,6 +123,7 @@ Jazzon also supports async plugins. Under the hood, jazzon is using [co](https:/
 - [jazzon-faker](https://github.com/tornqvist/jazzon-faker) *Generate fake data using faker*
 - [jazzon-lodash](https://github.com/tornqvist/jazzon-lodash) *Use some lodash goodness with jazzon*
 - [jazzon-repeat](https://github.com/tornqvist/jazzon-repeat) *Repeat given value n number of times*
+- [jazzon-format](https://github.com/tornqvist/jazzon-format) *Format strings using `util.format`*
 
 To add your own plugin, add it to the list and make a pull request.
 
@@ -143,5 +144,5 @@ To add your own plugin, add it to the list and make a pull request.
 - [x] Add documentation
 - [x] Add wrapper for non-Promises returned from plugins
 - [x] Add test for plugins (generator/non-generator)
-- [ ] Better error handling
+- [x] Better error handling
 - [ ] Add CLI

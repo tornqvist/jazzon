@@ -55,3 +55,20 @@ test('helper names may be dot notaded', assert => {
     .compile(json)
     .then(() => assert.end(), assert.end);
 });
+
+test('helper arguments are unwrapped from quotes', assert => {
+  let instance = jazzon.create();
+  let json = {
+    test: '@{ helper("") | helper(" ") | helper("foo") | helper(\'bar\', "baz") | helper(\' \') }'
+  };
+
+  instance
+    .use(function (state, name, args) {
+      return ((state || '') + args.join(''));
+    })
+    .compile(json)
+    .then(result => {
+      assert.equal(result.test, ' foobarbaz ');
+      assert.end();
+    }, assert.end);
+});
